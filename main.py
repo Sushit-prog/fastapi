@@ -74,6 +74,23 @@ def update_product(product_data: ProductDTO, product_id:int):
     "status": "Product not found"
   }
 
+# delete
+
+@app.delete("/delete_product/{product_id}")
+def delete_product(product_id:int):
+
+  for index, oneProduct in enumerate(products):
+    if oneProduct.get("id") == product_id:
+      deleted_product = products.pop(index)
+      return {
+        "status": "product deleted successfully",
+        "deleted_product": deleted_product
+      }
+
+  return {
+    "status": "Product not found"
+  }
+
 # How to call different http methods - Any Tool (postman)
 
 
